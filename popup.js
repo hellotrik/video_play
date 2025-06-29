@@ -9,15 +9,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (e) {}
     if (/\.(m3u8|mp4|webm)(\?|$)/i.test(realUrl)) {
-      const btn = document.createElement('button');
-      btn.textContent = '用 IINA 播放';
-      btn.onclick = () => {
-        const iinaUrl = `iina://weblink?url=${encodeURIComponent(realUrl)}`;
-        window.open(iinaUrl, '_blank');
-      };
-      document.body.appendChild(btn);
+      const iinaUrl = `iina://weblink?url=${encodeURIComponent(realUrl)}`;
+      window.open(iinaUrl, '_blank');
+      window.close();
     } else {
-      document.body.textContent = '当前页面不是视频地址';
+      const toast = document.createElement('div');
+      toast.textContent = '当前页面不是视频地址';
+      toast.style.position = 'fixed';
+      toast.style.top = '50%';
+      toast.style.left = '50%';
+      toast.style.transform = 'translate(-50%, -50%)';
+      toast.style.background = 'rgba(0,0,0,0.85)';
+      toast.style.color = '#fff';
+      toast.style.padding = '12px 28px';
+      toast.style.borderRadius = '8px';
+      toast.style.fontSize = '16px';
+      toast.style.zIndex = 99999;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.remove();
+        window.close();
+      }, 1800);
     }
   });
 }); 

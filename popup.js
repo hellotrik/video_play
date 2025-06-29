@@ -25,6 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.style.borderRadius = '8px';
       toast.style.fontSize = '16px';
       toast.style.zIndex = 99999;
+      toast.style.maxWidth = '90vw';
+      toast.style.minWidth = '120px';
+      toast.style.textAlign = 'center';
+      toast.style.wordBreak = 'break-all';
       document.body.appendChild(toast);
       setTimeout(() => {
         toast.remove();
